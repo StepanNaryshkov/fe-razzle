@@ -65,12 +65,6 @@
     "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.1"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
