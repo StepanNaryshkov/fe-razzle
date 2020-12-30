@@ -1,3 +1,3 @@
-import {PageSpinner} from "./component";
+import {PageSpinner} from './component';
 
 export default PageSpinner;

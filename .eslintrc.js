@@ -30,6 +30,7 @@ module.exports = {
     'prefer-template': 'error',
     'space-before-blocks': 'error',
     'import/prefer-default-export': 'off',
+    'require-jsdoc': 'off',
     'max-len': [
       'warn',
       {

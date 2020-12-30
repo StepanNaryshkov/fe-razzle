@@ -1,8 +1,8 @@
-import {toggleNotificationAction} from "./app";
-import CNST from "../../constants";
+import {toggleNotificationAction} from './app';
+import CNST from '../../constants';
 
-describe("App actions", () => {
-  test("toggleNotificationAction should return true", () => {
+describe('App actions', () => {
+  test('toggleNotificationAction should return true', () => {
     expect(toggleNotificationAction({isOpened: true})).toEqual({
       type: CNST.APP.TOGGLE_NOTIFICATION.SUCCESS,
       payload: {
@@ -12,7 +12,7 @@ describe("App actions", () => {
       },
     });
   });
-  test("toggleNotificationAction should return false", () => {
+  test('toggleNotificationAction should return false', () => {
     expect(toggleNotificationAction({isOpened: false})).toEqual({
       type: CNST.APP.TOGGLE_NOTIFICATION.SUCCESS,
       payload: {

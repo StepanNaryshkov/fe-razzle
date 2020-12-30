@@ -1,7 +1,7 @@
 const user = {
   fetching: false,
-  role: "",
-  email: "",
+  role: '',
+  email: '',
   isLoggedIn: false,
   isGetUserFetched: false,
 };

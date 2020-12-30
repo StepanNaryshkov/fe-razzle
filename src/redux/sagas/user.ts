@@ -1,18 +1,18 @@
-import {call, put} from "redux-saga/effects";
-import axios from "axios";
-import CNST from "../../constants";
-import {isResponseOk} from "../../helpers/api/isResponseOk";
-import {removeToken, setToken} from "../../library/cookie-service/cookie-services";
+import {call, put} from 'redux-saga/effects';
+import axios from 'axios';
+import CNST from '../../constants';
+import {isResponseOk} from '../../helpers/api/isResponseOk';
+import {removeToken, setToken} from '../../library/cookie-service/cookie-services';
 
 export const signInRequest = ({email, password}) =>
   axios
-    .post("/user-service/login", {
-      email,
-      password,
-    })
-    .catch((error) => {
-      throw error.response.data;
-    });
+      .post('/user-service/login', {
+        email,
+        password,
+      })
+      .catch((error) => {
+        throw error.response.data;
+      });
 
 export function* signIn(props) {
   try {
@@ -39,7 +39,7 @@ export function* signOut() {
 }
 
 export const getUserRequest = () =>
-  axios.get("/user-service/me").catch((error) => {
+  axios.get('/user-service/me').catch((error) => {
     throw error.response.data;
   });
 

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {Redirect} from "react-router-dom";
-import {PageSpinner} from "../../components";
-import NotFound from "../../pages/not-found";
-import CNST from "../../constants/app";
+import React, {useEffect, useState} from 'react';
+import {Redirect} from 'react-router-dom';
+import {PageSpinner} from '../../components';
+import NotFound from '../../pages/not-found';
+import CNST from '../../constants/app';
 
 const {ROUTE} = CNST;
 

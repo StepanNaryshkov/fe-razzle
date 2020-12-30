@@ -12,10 +12,10 @@ import NotFound from '../pages/not-found';
 const mockStore = configureStore([]);
 const store = mockStore(initialUserState);
 
-describe('IsNotAuthUser', () => {
+describe('IsAuthUser', () => {
   const props = {
     component: NotFound,
-    isLoggedIn: false,
+    isLoggedIn: true,
     rest: {},
   };
 
@@ -26,6 +26,7 @@ describe('IsNotAuthUser', () => {
         </Router>
       </Provider>,
   );
+
   test('should render', () => {
     expect(container).toBeTruthy();
   });
@@ -33,7 +34,7 @@ describe('IsNotAuthUser', () => {
   test('should map state to props', () => {
     const state = {
       user: {
-        isLoggedIn: false,
+        isLoggedIn: true,
       },
     };
     expect(mapStateToProps(state)).toMatchObject(state.user);

@@ -1,12 +1,12 @@
-import React from "react";
-import {Route, Switch} from "react-router-dom";
-import CNST from "../constants";
-import "../style/general.module.scss";
-import IsAuthUser from "./IsAuthUser";
-import IsNotAuthUser from "./IsNotAuthUser";
-import NotFound from "../pages/not-found";
-import SignIn from "../pages/sign-in";
-import Profile from "../pages/profile";
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
+import CNST from '../constants';
+import '../style/general.module.scss';
+import IsAuthUser from './IsAuthUser';
+import IsNotAuthUser from './IsNotAuthUser';
+import NotFound from '../pages/not-found';
+import SignIn from '../pages/sign-in';
+import Profile from '../pages/profile';
 
 const {ROUTE} = CNST.APP;
 const {ROLES} = CNST;

@@ -1,11 +1,10 @@
-import React from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import {render} from "@testing-library/react";
-import {Notification} from "./component";
+import React from 'react';
+import {render} from '@testing-library/react';
+import {Notification} from './component';
 
 const buildComponent = (props: any) => render(<Notification {...props} />);
 
-describe("Notification component", () => {
+describe('Notification component', () => {
   let props: any;
   const onCloseSpy = jest.fn();
 
@@ -13,7 +12,7 @@ describe("Notification component", () => {
     props = {
       isOpened: false,
       onClose: onCloseSpy,
-      message: "message",
+      message: 'message',
       children: <span>Test</span>,
     };
   });
@@ -22,8 +21,8 @@ describe("Notification component", () => {
     jest.clearAllMocks();
   });
 
-  test("should render", () => {
+  test('should render', () => {
     const {findByText} = buildComponent(props);
-    expect(findByText("message")).toBeTruthy();
+    expect(findByText('message')).toBeTruthy();
   });
 });
