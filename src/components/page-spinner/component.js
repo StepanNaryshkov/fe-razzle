@@ -1,18 +1,16 @@
-import React from 'react';
-import styles from './style.module.scss';
-import classnames from 'classnames/bind';
+import React from "react";
+import classnames from "classnames/bind";
+import styles from "./style.module.scss";
 
 const cx = classnames.bind(styles);
 
-export const PageSpinner = ({ isFetching }) => {
-  return (
-    <div
-      className={cx('wrap', {
-        fadeOut: !isFetching,
-      })}
-      data-testid="loader"
-    >
-      <div className={styles.loader} />
-    </div>
-  );
-};
+export const PageSpinner = ({isFetching}) => (
+  <div
+    className={cx("wrap", {
+      fadeOut: !isFetching,
+    })}
+    data-testid="loader"
+  >
+    <div className={styles.loader} />
+  </div>
+);

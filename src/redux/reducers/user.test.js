@@ -1,7 +1,7 @@
-import CNST from '../../constants/';
-import userReducer from './user';
+import CNST from "../../constants";
+import userReducer from "./user";
 
-describe('User reducer', () => {
+describe("User reducer", () => {
   let inititalState;
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('User reducer', () => {
     jest.clearAllMocks();
   });
 
-  test('should be fetched', () => {
+  test("should be fetched", () => {
     const signIn = userReducer(inititalState, {
       type: CNST.USER.SIGN_IN.FETCH,
     });
@@ -32,9 +32,9 @@ describe('User reducer', () => {
     });
   });
 
-  test('should handle success', () => {
+  test("should handle success", () => {
     const payload = {
-      email: 'test',
+      email: "test",
     };
     const newState = userReducer(inititalState, {
       type: CNST.USER.SIGN_IN.SUCCESS,
@@ -48,7 +48,7 @@ describe('User reducer', () => {
     });
   });
 
-  test('should not be fetched', () => {
+  test("should not be fetched", () => {
     const newState = userReducer(inititalState, {
       type: CNST.USER.SIGN_IN.ERROR,
     });
@@ -58,21 +58,21 @@ describe('User reducer', () => {
     });
   });
 
-  test('should handle sign out success', () => {
+  test("should handle sign out success", () => {
     const newState = userReducer(inititalState, {
       type: CNST.USER.SIGN_OUT.SUCCESS,
     });
     expect(newState).toEqual({
       ...inititalState,
-      email: '',
-      role: '',
+      email: "",
+      role: "",
       isGetUserFetched: false,
       isLoggedIn: false,
       fetching: false,
     });
   });
 
-  test('get user error appear correctly', () => {
+  test("get user error appear correctly", () => {
     const newState = userReducer(inititalState, {
       type: CNST.USER.GET_PROFILE.ERROR,
     });
@@ -84,9 +84,9 @@ describe('User reducer', () => {
     });
   });
 
-  test('clearErrors should clear errors', () => {
+  test("clearErrors should clear errors", () => {
     const payload = {
-      errors: 'test',
+      errors: "test",
     };
 
     const newState = userReducer(
@@ -101,7 +101,7 @@ describe('User reducer', () => {
     });
   });
 
-  test('get user should be fetched', () => {
+  test("get user should be fetched", () => {
     const newState = userReducer(inititalState, {
       type: CNST.USER.GET_PROFILE.FETCH,
     });
@@ -112,9 +112,9 @@ describe('User reducer', () => {
     });
   });
 
-  test('should handle get profile success', () => {
+  test("should handle get profile success", () => {
     const payload = {
-      email: 'test',
+      email: "test",
     };
     const newState = userReducer(inititalState, {
       type: CNST.USER.GET_PROFILE.SUCCESS,
@@ -128,8 +128,8 @@ describe('User reducer', () => {
     });
   });
 
-  test('should return initial state', () => {
-    const newState = userReducer(inititalState, { type: 'TEST' });
+  test("should return initial state", () => {
+    const newState = userReducer(inititalState, {type: "TEST"});
     expect(newState).toEqual(inititalState);
   });
 });

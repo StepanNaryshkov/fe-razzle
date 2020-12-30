@@ -1,5 +1,5 @@
 export default {
-  OPERATOR: 'OPERATOR',
-  ADMIN: 'ADMIN',
-  MANAGER: 'MANAGER',
+  OPERATOR: "OPERATOR",
+  ADMIN: "ADMIN",
+  MANAGER: "MANAGER",
 };

@@ -1,37 +1,37 @@
-import './request';
-import axios from 'axios';
-import * as services from '../cookie-service/cookie-services';
+import "./request";
+import axios from "axios";
+import * as services from "../cookie-service/cookie-services";
 
-describe('Request interceptor', () => {
-  test('should set the header when token exists', () => {
-    services.getToken = jest.fn(() => 'token');
-    let config = {
+describe("Request interceptor", () => {
+  test("should set the header when token exists", () => {
+    services.getToken = jest.fn(() => "token");
+    const config = {
       headers: {
         Authorization: undefined,
       },
-      other: 'test',
+      other: "test",
     };
-    let res = axios.interceptors.request.handlers[0].fulfilled(config);
-    expect(res.headers['Authorization']).toBe('Bearer token');
+    const res = axios.interceptors.request.handlers[0].fulfilled(config);
+    expect(res.headers.Authorization).toBe("Bearer token");
   });
 
-  test('should not set the header when token doesnt exists', () => {
-    services.getToken = jest.fn(() => '');
-    let config = {
+  test("should not set the header when token doesnt exists", () => {
+    services.getToken = jest.fn(() => "");
+    const config = {
       headers: {
         Authorization: undefined,
       },
-      other: 'test',
+      other: "test",
     };
-    let res = axios.interceptors.request.handlers[0].fulfilled(config);
-    expect(res.headers['Authorization']).toBe(undefined);
+    const res = axios.interceptors.request.handlers[0].fulfilled(config);
+    expect(res.headers.Authorization).toBe(undefined);
   });
 
-  test('should throw an error', () => {
-    let error = {
+  test("should throw an error", () => {
+    const error = {
       status: 400,
     };
-    let res = axios.interceptors.request.handlers[0].rejected(error);
+    const res = axios.interceptors.request.handlers[0].rejected(error);
     expect(res).toMatchObject(error);
   });
 });

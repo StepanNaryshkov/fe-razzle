@@ -1,26 +1,52 @@
 {
   "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
   "env": {
     "browser": true,
-    "node": true,
-    "es6": true
-  },
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier"],
-  "parserOptions": {
-    "ecmaVersion": 2017,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
   },
   "rules": {
-    "prettier/prettier": ["error"],
+    "jsx-a11y/href-no-hash": [
+      "off"
+    ],
     "no-console": "warn",
     "default-case": "error",
     "no-duplicate-imports": "error",
     "no-unused-expressions": "error",
     "no-multi-spaces": "error",
-    "quotes": [2, "single", { "avoidEscape": true }]
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "func-names": ["error", "never", { "generators": "never" }],
+    "import/no-named-as-default": 0,
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "tabWidth": 2,
+        "ignoreComments": false,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true,
+        "code": 90
+      }
+    ]
   }
 }

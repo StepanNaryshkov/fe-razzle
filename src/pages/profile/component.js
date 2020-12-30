@@ -1,9 +1,3 @@
-import React from 'react';
+import React from "react";
 
-export const Profile = () => {
-  return (
-    <div data-testid='profile'>
-     profile
-    </div>
-  );
-};
+export const Profile = () => <div data-testid="profile">profile</div>;

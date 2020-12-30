@@ -1,7 +1,7 @@
-import CNST from '../../constants/';
-import appReducer from './app';
+import CNST from "../../constants";
+import appReducer from "./app";
 
-describe('App reducer', () => {
+describe("App reducer", () => {
   let inititalState;
 
   beforeEach(() => {
@@ -16,14 +16,14 @@ describe('App reducer', () => {
     jest.clearAllMocks();
   });
 
-  test('should show notification', () => {
+  test("should show notification", () => {
     const newState = appReducer(inititalState, {
       type: CNST.APP.TOGGLE_NOTIFICATION.SUCCESS,
       payload: {
         notification: {
           isOpened: true,
-          type: 'error',
-          message: 'test',
+          type: "error",
+          message: "test",
         },
       },
     });
@@ -31,14 +31,14 @@ describe('App reducer', () => {
       ...inititalState,
       notification: {
         isOpened: true,
-        type: 'error',
-        message: 'test',
+        type: "error",
+        message: "test",
       },
     });
   });
 
-  test('should return initial state', () => {
-    const newState = appReducer(inititalState, { type: 'TEST' });
+  test("should return initial state", () => {
+    const newState = appReducer(inititalState, {type: "TEST"});
     expect(newState).toEqual(inititalState);
   });
 });

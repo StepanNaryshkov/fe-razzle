@@ -1,36 +1,27 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import get from 'lodash/get';
-import { connect } from 'react-redux';
-import CNST from '../constants/';
-import AuthLayout from '../layouts/auth';
-const { ROLES } = CNST;
+import React from "react";
+import {Route} from "react-router-dom";
+import get from "lodash/get";
+import {connect} from "react-redux";
+import CNST from "../constants";
+import AuthLayout from "../layouts/auth";
 
-const IsNotAuthUser = ({ component: Component, isLoggedIn, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        !isLoggedIn ? (
-          <Component {...props} />
-        ) : (
-          <AuthLayout
-            permissions={[
-              ROLES.ADMIN,
-              ROLES.MANAGER,
-              ROLES.OPERATOR,
-            ]}
-          />
-        )
-      }
-    />
-  );
-};
+const {ROLES} = CNST;
 
-export const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: get(state, 'user.isLoggedIn', false),
-  };
-};
+const IsNotAuthUser = ({component: Component, isLoggedIn, ...rest}) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      !isLoggedIn ? (
+        <Component {...props} />
+      ) : (
+        <AuthLayout permissions={[ROLES.ADMIN, ROLES.MANAGER, ROLES.OPERATOR]} />
+      )
+    }
+  />
+);
+
+export const mapStateToProps = (state) => ({
+  isLoggedIn: get(state, "user.isLoggedIn", false),
+});
 
 export default connect(mapStateToProps)(IsNotAuthUser);

@@ -1,25 +1,20 @@
-import {
-  clearErrorsAction,
-  getUserAction,
-  signInAction,
-  signUpAction,
-} from './user';
-import CNST from '../../constants/';
+import {clearErrorsAction, getUserAction, signInAction} from "./user";
+import CNST from "../../constants";
 
-describe('User actions', () => {
-  test('signInAction should return correct value', () => {
+describe("User actions", () => {
+  test("signInAction should return correct value", () => {
     const payload = {
-      name: 'Test',
-      password: 'test',
+      name: "Test",
+      password: "test",
     };
     expect(signInAction(payload)).toEqual({
       type: CNST.USER.SIGN_IN.FETCH,
       payload,
     });
   });
-  test('clearErrorsAction should return correct value', () => {
+  test("clearErrorsAction should return correct value", () => {
     const payload = {
-      name: 'Test',
+      name: "Test",
     };
     expect(clearErrorsAction(payload)).toEqual({
       type: CNST.USER.CLEAR_ERRORS.SUCCESS,
@@ -27,7 +22,7 @@ describe('User actions', () => {
     });
   });
 
-  test('getUserAction should return correct value', () => {
+  test("getUserAction should return correct value", () => {
     expect(getUserAction()).toEqual({
       type: CNST.USER.GET_PROFILE.FETCH,
     });

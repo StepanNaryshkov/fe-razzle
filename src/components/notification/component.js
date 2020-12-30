@@ -1,32 +1,22 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from "react";
 
-export const Notification = ({
-  message,
-  isOpened,
-  children,
-  onClose,
-  type,
-  toggleNotification,
-}) => {
+export const Notification = ({message, children, onClose, toggleNotification}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      toggleNotification({ isOpened: false });
+      toggleNotification({isOpened: false});
     }, 5000);
-    return () => {
-      return clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   });
 
   return (
-    <div
-      data-testid="notification"
-    >
+    <div data-testid="notification">
       <div>
         <span>{message}. </span>
         {children}
       </div>
       <button
         onClick={onClose}
+        aria-label="close-notification"
         type="button"
         data-testid="close-notification"
       />

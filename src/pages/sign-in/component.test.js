@@ -1,8 +1,8 @@
-import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { SignIn } from './component';
-import { Router } from 'react-router-dom';
-import history from '../../routes/history';
+import React from "react";
+import {render} from "@testing-library/react";
+import {Router} from "react-router-dom";
+import {SignIn} from "./component";
+import history from "../../routes/history";
 
 const buildComponent = (props) =>
   render(
@@ -11,7 +11,7 @@ const buildComponent = (props) =>
     </Router>
   );
 
-describe('SignIn component', () => {
+describe("SignIn component", () => {
   let props;
 
   beforeEach(() => {
@@ -28,9 +28,9 @@ describe('SignIn component', () => {
     jest.clearAllMocks();
   });
 
-  test('should render', () => {
-    const { container } = buildComponent(props);
-    const title = container.querySelector('h1');
+  test("should render", () => {
+    const {container} = buildComponent(props);
+    const title = container.querySelector("h1");
     expect(title).toBeTruthy();
   });
 });

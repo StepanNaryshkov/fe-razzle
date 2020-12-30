@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import {
-  PageSpinner,
-} from '../../components';
-import NotFound from '../../pages/not-found';
-import { Redirect } from 'react-router-dom';
-import CNST from '../../constants/app';
+import React, {useEffect, useState} from "react";
+import {Redirect} from "react-router-dom";
+import {PageSpinner} from "../../components";
+import NotFound from "../../pages/not-found";
+import CNST from "../../constants/app";
 
-const { ROUTE } = CNST;
+const {ROUTE} = CNST;
 
 export const AuthLayout = ({
   getUser,
@@ -31,13 +29,7 @@ export const AuthLayout = ({
     } else if (role && isGetUserFetched) {
       setIsNotAllowedToView(true);
     }
-  }, [
-    role,
-    permissions,
-    isGetUserFetched,
-    setUserPermission,
-    setIsNotAllowedToView,
-  ]);
+  }, [role, permissions, isGetUserFetched, setUserPermission, setIsNotAllowedToView]);
 
   const isAllowedToView = doesUserHavePermission && children;
   const needsToBeRedirected = role && doesUserHavePermission && !children;
@@ -45,11 +37,7 @@ export const AuthLayout = ({
   return (
     <>
       {!isGetUserFetched && <PageSpinner />}
-      {isAllowedToView && (
-        <>
-          {children}
-        </>
-      )}
+      {isAllowedToView && <>{children}</>}
       {needsToBeRedirected && <Redirect to={ROUTE.ROLE_BASE[role]} />}
       {isNotAllowedToView && <NotFound />}
     </>

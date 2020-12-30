@@ -1,5 +1,3 @@
-import React from 'react';
+import React from "react";
 
-export const NotAuthLayout = () => {
-  return <>1</>;
-};
+export const NotAuthLayout = () => <>1</>;
