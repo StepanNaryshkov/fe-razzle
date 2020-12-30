@@ -1,9 +1,12 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   'env': {
     'browser': true,
     'es2021': true,
+    'jest': true,
   },
   'extends': [
+    'eslint:recommended',
     'plugin:react/recommended',
     'google',
   ],
@@ -17,6 +20,7 @@ module.exports = {
   },
   'plugins': [
     'react',
+    'react-hooks',
     '@typescript-eslint',
   ],
   'rules': {
@@ -26,5 +30,18 @@ module.exports = {
     'prefer-template': 'error',
     'space-before-blocks': 'error',
     'import/prefer-default-export': 'off',
+    'max-len': [
+      'warn',
+      {
+        'tabWidth': 2,
+        'ignoreComments': false,
+        'ignoreTrailingComments': true,
+        'ignoreUrls': true,
+        'ignoreStrings': true,
+        'ignoreTemplateLiterals': true,
+        'ignoreRegExpLiterals': true,
+        'code': 100,
+      },
+    ],
   },
 };
