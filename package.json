@@ -68,7 +68,7 @@
     "extends": ["react-app", "plugin:prettier/recommended"]
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json}": ["eslint --fix", "git add"],
+    "src/**/*.{js,jsx,json}": ["eslint --quiet --fix", "git add"],
     "src/**/*.{css,scss,md}": ["prettier --write", "git add"]
   },
   "jest": {

@@ -55,7 +55,6 @@ describe("<App />", () => {
 
   test("dispatch should be called", () => {
     const dispatch = jest.fn();
-
     mapDispatchToProps(dispatch).toggleNotification();
     expect(dispatch).toHaveBeenCalledTimes(1);
   });
