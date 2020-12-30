@@ -67,6 +67,11 @@
   "eslintConfig": {
     "extends": ["react-app", "plugin:prettier/recommended"]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css,scss,md}": [
       "prettier --write",
@@ -97,10 +102,5 @@
     "printWidth": 90,
     "bracketSpacing": false,
     "trailingComma": "es5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }

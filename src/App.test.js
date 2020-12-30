@@ -42,6 +42,7 @@ describe("<App />", () => {
     const closeBtn = container.querySelector(
       "button[data-testid='close-notification']"
     );
+
     fireEvent.click(closeBtn);
     expect(toggleNotificationSpy).toHaveBeenCalledWith({ isOpened: false });
   });
