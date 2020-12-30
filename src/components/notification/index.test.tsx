@@ -1,11 +1,12 @@
 import React from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {render} from "@testing-library/react";
 import {Notification} from "./component";
 
-const buildComponent = (props) => render(<Notification {...props} />);
+const buildComponent = (props: any) => render(<Notification {...props} />);
 
 describe("Notification component", () => {
-  let props;
+  let props: any;
   const onCloseSpy = jest.fn();
 
   beforeEach(() => {

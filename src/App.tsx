@@ -5,14 +5,15 @@ import Router from "./routes";
 import {Notification} from "./components";
 import {toggleNotificationAction} from "./redux/actions/app";
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = (state: {notification: {}}) => ({
   notification: get(state, "app.notification", {}),
 });
 
-export const mapDispatchToProps = (dispatch) => ({
-  toggleNotification: (props) => dispatch(toggleNotificationAction(props)),
+export const mapDispatchToProps = (dispatch: any) => ({
+  toggleNotification: (props: any) => dispatch(toggleNotificationAction(props)),
 });
 
+// @ts-ignore
 export const App = ({notification, toggleNotification}) => {
   const handleToggleNotification = useCallback(() => {
     toggleNotification({isOpened: false});

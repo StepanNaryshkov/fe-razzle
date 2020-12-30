@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 
+// @ts-ignore
 export const Notification = ({message, children, onClose, toggleNotification}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
