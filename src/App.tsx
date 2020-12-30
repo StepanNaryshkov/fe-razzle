@@ -13,7 +13,6 @@ export const mapDispatchToProps = (dispatch: any) => ({
   toggleNotification: (props: any) => dispatch(toggleNotificationAction(props)),
 });
 
-// @ts-ignore
 export const App = ({notification, toggleNotification}) => {
   const handleToggleNotification = useCallback(() => {
     toggleNotification({isOpened: false});

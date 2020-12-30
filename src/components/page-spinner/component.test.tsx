@@ -1,6 +1,6 @@
 import React from "react";
 import {render} from "@testing-library/react";
-import {PageSpinner} from "./component";
+import {PageSpinner} from './component';
 
 describe("Page spinner component", () => {
   test("should render", () => {
