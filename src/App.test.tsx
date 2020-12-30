@@ -10,7 +10,7 @@ import initialUserState from "./redux/stores/user";
 const mockStore = configureStore([]);
 const store = mockStore(initialUserState);
 
-const buildComponent = (props) =>
+const buildComponent = (props: any) =>
   render(
     <Provider store={store}>
       <Router history={history}>
@@ -20,7 +20,7 @@ const buildComponent = (props) =>
   );
 
 describe("<App />", () => {
-  let props;
+  let props: any;
   const toggleNotificationSpy = jest.fn();
 
   beforeEach(() => {
@@ -41,6 +41,7 @@ describe("<App />", () => {
     const {container} = buildComponent(props);
     const closeBtn = container.querySelector("button[data-testid='close-notification']");
 
+    // @ts-ignore
     fireEvent.click(closeBtn);
     expect(toggleNotificationSpy).toHaveBeenCalledWith({isOpened: false});
   });
@@ -55,6 +56,7 @@ describe("<App />", () => {
   test("dispatch should be called", () => {
     const dispatch = jest.fn();
 
+    // @ts-ignore
     mapDispatchToProps(dispatch).toggleNotification();
     expect(dispatch).toHaveBeenCalledTimes(1);
   });
