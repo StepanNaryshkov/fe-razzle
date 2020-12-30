@@ -4,6 +4,7 @@ import * as services from '../cookie-service/cookie-services';
 
 describe('Request interceptor', () => {
   test('should set the header when token exists', () => {
+    // eslint-disable-next-line
     services.getToken = jest.fn(() => 'token');
     const config = {
       headers: {
@@ -16,6 +17,7 @@ describe('Request interceptor', () => {
   });
 
   test('should not set the header when token doesnt exists', () => {
+    // eslint-disable-next-line
     services.getToken = jest.fn(() => '');
     const config = {
       headers: {

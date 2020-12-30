@@ -1,8 +1,8 @@
 import CNST from '../../constants';
-import appReducer from './app';
+import appReducer, {AppState} from './app';
 
 describe('App reducer', () => {
-  let inititalState;
+  let inititalState: AppState;
 
   beforeEach(() => {
     inititalState = {

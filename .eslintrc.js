@@ -1,8 +1,10 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   'env': {
+    'node': true,
+    'commonjs': true,
     'browser': true,
-    'es2021': true,
+    'es6': true,
     'jest': true,
   },
   'extends': [
@@ -23,6 +25,9 @@ module.exports = {
     'react-hooks',
     '@typescript-eslint',
   ],
+  'globals': {
+    'JSX': 'readonly',
+  },
   'rules': {
     'react-hooks/exhaustive-deps': 'error',
     'no-var': 'error',
@@ -30,6 +35,7 @@ module.exports = {
     'prefer-template': 'error',
     'space-before-blocks': 'error',
     'import/prefer-default-export': 'off',
+    'react/prop-types': 'off',
     'require-jsdoc': 'off',
     'max-len': [
       'warn',

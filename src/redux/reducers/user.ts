@@ -1,7 +1,24 @@
+import get from 'lodash/get';
 import CNST from '../../constants';
 import user from '../stores/user';
 
-export default function(state = user, action) {
+export interface UserState {
+  fetching: boolean;
+  role: string;
+  email: string;
+  isLoggedIn: boolean;
+  isGetUserFetched: boolean;
+}
+
+export interface UserAction {
+  type: string;
+  payload?: {
+    email?: string;
+    errors?: string;
+  };
+}
+
+export default function(state : UserState = user, action: UserAction) {
   switch (action.type) {
     case CNST.USER.SIGN_OUT.FETCH:
     case CNST.USER.SIGN_IN.FETCH:
@@ -12,7 +29,7 @@ export default function(state = user, action) {
     case CNST.USER.SIGN_IN.SUCCESS:
       return {
         ...state,
-        name: action.payload.email,
+        email: get(action, 'payload.email', ''),
         isLoggedIn: true,
       };
     case CNST.USER.SIGN_IN.ERROR:

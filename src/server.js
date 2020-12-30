@@ -11,15 +11,6 @@ import App from './App';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
-const cssLinksFromAssets = (cssAssets, entrypoint) =>
-  cssAssets[entrypoint] ?
-    cssAssets[entrypoint].css ?
-      cssAssets[entrypoint].css
-          .map((asset) => `<link rel="stylesheet" href="${asset}">`)
-          .join('') :
-      '' :
-    '';
-
 const server = express();
 server
     .disable('x-powered-by')
@@ -51,7 +42,11 @@ server
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        ${cssLinksFromAssets(assets, 'client')}
+        ${
+              assets.client.css ?
+                `<link rel="stylesheet" href="${assets.client.css}">` :
+                ''
+}
              ${
                process.env.NODE_ENV === 'production' ?
                  `<script src="${assets.client.js}" defer></script>` :

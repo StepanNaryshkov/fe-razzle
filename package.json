@@ -8,7 +8,8 @@
     "build": "razzle build",
     "test": "razzle test --env=jest-environment-jsdom-sixteen",
     "coverage": "npm run test -- --coverage --no-cache",
-    "start:prod": "cross-env NODE_ENV=production node build/server.js"
+    "start:prod": "cross-env NODE_ENV=production node build/server.js",
+    "lint": "./node_modules/.bin/eslint src"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -37,6 +38,7 @@
     "@babel/plugin-proposal-private-methods": "^7.12.1",
     "@babel/preset-env": "7.12.11",
     "@babel/preset-react": "7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.7.0",
@@ -70,6 +72,7 @@
     "prettier": "2.2.1",
     "razzle": "^3.3.8",
     "razzle-plugin-bundle-analyzer": "^1.2.0",
+    "razzle-plugin-eslint": "^3.3.9",
     "razzle-plugin-scss": "^3.3.8",
     "react-test-renderer": "^17.0.1",
     "redux": "^4.0.5",
@@ -96,7 +99,7 @@
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     },
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
+      "src/**/*.{js,jsx, ts, tsx}",
       "server/**/*.js",
       "!src/server.js",
       "!src/axios.config.js",
@@ -105,9 +108,9 @@
       "!src/client.js"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/*.{spec,test}.{js,jsx,mjs}",
-      "<rootDir>/server/**/*.{spec,test}.{js,mjs}"
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,mjs,ts,tsx}",
+      "<rootDir>/server/**/*.{spec,test}.{js,mjs,ts,tsx}"
     ]
   },
   "prettier": {

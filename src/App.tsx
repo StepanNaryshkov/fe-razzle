@@ -5,7 +5,7 @@ import Router from './routes';
 import {Notification} from './components';
 import {toggleNotificationAction} from './redux/actions/app';
 
-export const mapStateToProps = (state: {notification: {}}) => ({
+export const mapStateToProps = (state) => ({
   notification: get(state, 'app.notification', {}),
 });
 

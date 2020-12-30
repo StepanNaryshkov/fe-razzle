@@ -1,7 +1,13 @@
 import React, {useEffect} from 'react';
 
-// @ts-ignore
-export const Notification = ({message, children, onClose, toggleNotification}) => {
+interface Props {
+  message: string;
+  onClose: () => {};
+  toggleNotification: () => {};
+  children: JSX.Element
+}
+
+export const Notification = ({message, children, onClose, toggleNotification}: Props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       toggleNotification({isOpened: false});
