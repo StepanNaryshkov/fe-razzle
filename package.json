@@ -68,8 +68,10 @@
     "extends": ["react-app", "plugin:prettier/recommended"]
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json}": ["eslint --quiet --fix", "git add"],
-    "src/**/*.{css,scss,md}": ["prettier --write", "git add"]
+    "src/**/*.{js,jsx,json,css,scss,md}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "jest": {
     "moduleNameMapper": {
