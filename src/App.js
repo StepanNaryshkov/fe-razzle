@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import Router from "./routes";
+import Router from './routes';
 
 import { Notification } from './components';
 import get from 'lodash/get';
