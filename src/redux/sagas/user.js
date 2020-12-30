@@ -1,16 +1,16 @@
-import { call, put } from "redux-saga/effects";
-import CNST from "../../constants";
-import axios from "axios";
-import { isResponseOk } from "../../helpers/api/isResponseOk";
+import { call, put } from 'redux-saga/effects';
+import CNST from '../../constants';
+import axios from 'axios';
+import { isResponseOk } from '../../helpers/api/isResponseOk';
 import {
   removeToken,
   setToken,
-} from "../../library/cookie-service/cookie-services";
+} from '../../library/cookie-service/cookie-services';
 
 
 export const signInRequest = ({ email, password }) => {
   return axios
-    .post(`/user-service/login`, {
+    .post('/user-service/login', {
       email: email,
       password: password,
     })
@@ -47,7 +47,7 @@ export function* signOut() {
 }
 
 export const getUserRequest = () => {
-  return axios.get(`/user-service/me`).catch(function (error) {
+  return axios.get('/user-service/me').catch(function (error) {
     throw error.response.data;
   });
 };

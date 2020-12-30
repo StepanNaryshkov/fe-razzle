@@ -1,6 +1,6 @@
-import axios from "axios";
-import { testSaga } from "redux-saga-test-plan";
-import CNST from "./../../constants";
+import axios from 'axios';
+import { testSaga } from 'redux-saga-test-plan';
+import CNST from './../../constants';
 import {
   getUser,
   getUserRequest,
@@ -9,31 +9,31 @@ import {
   signOut,
   signUp,
   signUpRequest,
-} from "./user";
-import * as services from "../../library/cookie-service/cookie-services";
+} from './user';
+import * as services from '../../library/cookie-service/cookie-services';
 
-describe("User saga", () => {
+describe('User saga', () => {
   const props = {
     payload: {
-      username: "test",
+      username: 'test',
     },
   };
   const response = {
     status: 200,
-    data: ["Test"],
+    data: ['Test'],
   };
 
   const user = {
-    email: "test2@epam.com",
-    password: "gddadada",
-    confirmPassword: "tempPassword-1234",
+    email: 'test2@epam.com',
+    password: 'gddadada',
+    confirmPassword: 'tempPassword-1234',
     termsAndPolicyAccepted: true,
-    role: "Deficit Spending Unit",
+    role: 'Deficit Spending Unit',
   };
 
   const singInData = {
-    email: "test@gmail.com",
-    password: "password123",
+    email: 'test@gmail.com',
+    password: 'password123',
   };
 
   beforeEach(() => {
@@ -46,18 +46,18 @@ describe("User saga", () => {
     axios.get.mockRestore();
   });
 
-  test("sigInRequest test success", async () => {
+  test('sigInRequest test success', async () => {
     axios.post.mockImplementationOnce(() => Promise.resolve(singInData));
-    const postUrl = `/user-service/login`;
+    const postUrl = '/user-service/login';
     await signInRequest(singInData);
     expect(axios.post).toHaveBeenCalledWith(postUrl, singInData);
   });
 
-  test("sigInRequest test error", async () => {
+  test('sigInRequest test error', async () => {
     const error = {
       response: {
         status: 400,
-        data: "Error",
+        data: 'Error',
       },
     };
     axios.post.mockImplementation(() => Promise.reject(error));
@@ -66,7 +66,7 @@ describe("User saga", () => {
     );
   });
 
-  test("signIn test success", () => {
+  test('signIn test success', () => {
     let newProps = {
       payload: singInData,
     };
@@ -82,12 +82,12 @@ describe("User saga", () => {
       });
   });
 
-  test("signIn test success, with setToken called", () => {
+  test('signIn test success, with setToken called', () => {
     services.setToken = jest.fn();
     let newProps = {
       payload: {
-        email: "test@gmail.com",
-        password: "password123",
+        email: 'test@gmail.com',
+        password: 'password123',
         remember: true,
       },
     };
@@ -105,13 +105,13 @@ describe("User saga", () => {
     expect(services.setToken).toBeCalled();
   });
 
-  test("signIn response not ok", () => {
+  test('signIn response not ok', () => {
     let newProps = {
       payload: singInData,
     };
     let badResponse = {
       status: 300,
-      data: "error",
+      data: 'error',
     };
     testSaga(signIn, newProps)
       .next()
@@ -122,7 +122,7 @@ describe("User saga", () => {
       .put({ type: CNST.USER.SIGN_IN.ERROR, payload: badResponse.data });
   });
 
-  test("signIn test error", () => {
+  test('signIn test error', () => {
     let newProps = {
       payload: singInData,
     };
@@ -132,11 +132,11 @@ describe("User saga", () => {
         ...newProps.payload,
       })
       .next(response)
-      .throw("error")
-      .put({ type: CNST.USER.SIGN_IN.ERROR, payload: { errors: "error" } });
+      .throw('error')
+      .put({ type: CNST.USER.SIGN_IN.ERROR, payload: { errors: 'error' } });
   });
 
-  test("getUser test success", () => {
+  test('getUser test success', () => {
     testSaga(getUser)
       .next()
       .call(getUserRequest)
@@ -144,36 +144,36 @@ describe("User saga", () => {
       .put({ type: CNST.USER.GET_PROFILE.SUCCESS, payload: response.data });
   });
 
-  test("getUser test error", () => {
+  test('getUser test error', () => {
     testSaga(getUser)
       .next()
       .call(getUserRequest)
       .next(response)
-      .throw("error")
+      .throw('error')
       .put({
         type: CNST.USER.GET_PROFILE.ERROR,
       });
   });
 
-  test("getUserRequest test success", async () => {
+  test('getUserRequest test success', async () => {
     axios.get.mockImplementationOnce(() => Promise.resolve());
-    const postUrl = `/user-service/me`;
+    const postUrl = '/user-service/me';
     await getUserRequest();
     expect(axios.get).toHaveBeenCalledWith(postUrl);
   });
 
-  test("getUserRequest test error", async () => {
+  test('getUserRequest test error', async () => {
     const error = {
       response: {
         status: 400,
-        data: "Error",
+        data: 'Error',
       },
     };
     axios.get.mockImplementation(() => Promise.reject(error));
     await expect(getUserRequest()).rejects.toEqual(error.response.data);
   });
 
-  test("signOut test success", () => {
+  test('signOut test success', () => {
     services.removeToken = jest.fn();
     testSaga(signOut).next().put({
       type: CNST.USER.SIGN_OUT.SUCCESS,

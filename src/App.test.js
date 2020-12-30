@@ -1,11 +1,11 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { fireEvent, render } from "@testing-library/react";
-import configureStore from "redux-mock-store";
-import { App, mapStateToProps, mapDispatchToProps } from "./App";
-import { Router } from "react-router-dom";
-import history from "./routes/history";
-import initialUserState from "./redux/stores/user";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { fireEvent, render } from '@testing-library/react';
+import configureStore from 'redux-mock-store';
+import { App, mapStateToProps, mapDispatchToProps } from './App';
+import { Router } from 'react-router-dom';
+import history from './routes/history';
+import initialUserState from './redux/stores/user';
 
 const mockStore = configureStore([]);
 const store = mockStore(initialUserState);
@@ -19,7 +19,7 @@ const buildComponent = (props) =>
     </Provider>
   );
 
-describe("<App />", () => {
+describe('<App />', () => {
   let props;
   const toggleNotificationSpy = jest.fn();
 
@@ -28,7 +28,7 @@ describe("<App />", () => {
       toggleNotification: toggleNotificationSpy,
       notification: {
         isOpened: true,
-        type: "error",
+        type: 'error',
       },
     };
   });
@@ -37,7 +37,7 @@ describe("<App />", () => {
     jest.clearAllMocks();
   });
 
-  test("should toggleNotification be called", () => {
+  test('should toggleNotification be called', () => {
     const { container } = buildComponent(props);
     const closeBtn = container.querySelector(
       "button[data-testid='close-notification']"
@@ -47,14 +47,14 @@ describe("<App />", () => {
     expect(toggleNotificationSpy).toHaveBeenCalledWith({ isOpened: false });
   });
 
-  test("should correct map state to props", () => {
+  test('should correct map state to props', () => {
     const state = {
       notification: {},
     };
     expect(mapStateToProps(state)).toMatchObject(state);
   });
 
-  test("dispatch should be called", () => {
+  test('dispatch should be called', () => {
     const dispatch = jest.fn();
     
     mapDispatchToProps(dispatch).toggleNotification();

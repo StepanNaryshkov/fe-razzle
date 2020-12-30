@@ -19,7 +19,6 @@
     "no-duplicate-imports": "error",
     "no-unused-expressions": "error",
     "no-multi-spaces": "error",
-    "quotes": [2, "single", { "avoidEscape": true }],
-    "import/first": "error"
+    "quotes": [2, "single", { "avoidEscape": true }]
   }
 }

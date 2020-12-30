@@ -1,9 +1,9 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import { NotFound } from "./component";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import { render } from '@testing-library/react';
+import { NotFound } from './component';
+import { BrowserRouter } from 'react-router-dom';
 
-describe("NotFound component", () => {
+describe('NotFound component', () => {
   let props;
 
   beforeEach(() => {
@@ -12,12 +12,12 @@ describe("NotFound component", () => {
     };
   });
 
-  test("should render", () => {
+  test('should render', () => {
     const { getByTestId } = render(
       <BrowserRouter>
         <NotFound {...props} />
       </BrowserRouter>
     );
-    expect(getByTestId("not-found")).toBeTruthy();
+    expect(getByTestId('not-found')).toBeTruthy();
   });
 });

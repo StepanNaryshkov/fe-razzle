@@ -1,7 +1,7 @@
-import axios from "axios";
-import { removeToken } from "../cookie-service/cookie-services";
-import { toggleNotificationAction } from "../../redux/actions/app";
-import { store } from "../../store";
+import axios from 'axios';
+import { removeToken } from '../cookie-service/cookie-services';
+import { toggleNotificationAction } from '../../redux/actions/app';
+import { store } from '../../store';
 
 axios.interceptors.response.use(
   (response) => {
@@ -14,7 +14,7 @@ axios.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      error.response.config.url === "/user-service/me" // @TODO here we should check url where we get data if user is log in.
+      error.response.config.url === '/user-service/me' // @TODO here we should check url where we get data if user is log in.
     ) {
       removeToken();
       return;
@@ -24,8 +24,8 @@ axios.interceptors.response.use(
       store.dispatch(
         toggleNotificationAction({
           isOpened: true,
-          type: "error",
-          message: "server-errors:500+",
+          type: 'error',
+          message: 'server-errors:500+',
         })
       );
       throw error;

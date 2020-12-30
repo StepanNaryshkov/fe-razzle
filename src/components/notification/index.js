@@ -1,11 +1,11 @@
-import { Notification } from "./component";
-import get from "lodash/get";
-import { toggleNotificationAction } from "../../redux/actions/app";
-import { connect } from "react-redux";
+import { Notification } from './component';
+import get from 'lodash/get';
+import { toggleNotificationAction } from '../../redux/actions/app';
+import { connect } from 'react-redux';
 
 export const mapStateToProps = (state) => {
   return {
-    notification: get(state, "app.notification", {}),
+    notification: get(state, 'app.notification', {}),
   };
 };
 

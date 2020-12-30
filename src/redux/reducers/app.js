@@ -1,5 +1,5 @@
-import CNST from "../../constants";
-import app from "../stores/app";
+import CNST from '../../constants';
+import app from '../stores/app';
 
 export default function (state = app, action) {
   switch (action.type) {

@@ -1,12 +1,12 @@
-import { SignIn } from "./component";
-import get from "lodash/get";
-import { clearErrorsAction, signInAction } from "../../redux/actions/user";
-import { connect } from "react-redux";
+import { SignIn } from './component';
+import get from 'lodash/get';
+import { clearErrorsAction, signInAction } from '../../redux/actions/user';
+import { connect } from 'react-redux';
 
 export const mapStateToProps = (state) => {
   return {
-    fetching: get(state, "user.fetching", false),
-    errors: get(state, "user.errors", {}),
+    fetching: get(state, 'user.fetching', false),
+    errors: get(state, 'user.errors', {}),
   };
 };
 

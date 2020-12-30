@@ -1,8 +1,8 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import get from "lodash/get";
-import CNST from "../constants/app";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import get from 'lodash/get';
+import CNST from '../constants/app';
 
 const { ROUTE } = CNST;
 
@@ -28,7 +28,7 @@ const IsAuthUser = ({
 
 export const mapStateToProps = (state) => {
   return {
-    isLoggedIn: get(state, "user.isLoggedIn", false),
+    isLoggedIn: get(state, 'user.isLoggedIn', false),
   };
 };
 

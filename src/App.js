@@ -1,13 +1,13 @@
-import React, { useCallback, useMemo } from "react";
-import Router from "./routes";
-import { Notification } from "./components";
-import get from "lodash/get";
-import { toggleNotificationAction } from "./redux/actions/app";
-import { connect } from "react-redux";
+import React, { useCallback, useMemo } from 'react';
+import Router from './routes';
+import { Notification } from './components';
+import get from 'lodash/get';
+import { toggleNotificationAction } from './redux/actions/app';
+import { connect } from 'react-redux';
 
 export const mapStateToProps = (state) => {
   return {
-    notification: get(state, "app.notification", {}),
+    notification: get(state, 'app.notification', {}),
   };
 };
 
