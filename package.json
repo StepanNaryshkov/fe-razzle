@@ -9,7 +9,7 @@
     "test": "razzle test --env=jest-environment-jsdom-sixteen",
     "coverage": "npm run test -- --coverage --no-cache",
     "start:prod": "cross-env NODE_ENV=production node build/server.js",
-    "lint": "./node_modules/.bin/eslint src"
+    "lint": "./node_modules/.bin/eslint src --fix"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -75,7 +75,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx,json,css,scss,md}": [
       "prettier --write",
-      "yarn lint --fix"
+      "yarn lint"
     ]
   },
   "jest": {
