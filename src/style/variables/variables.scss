@@ -1,0 +1,7 @@
+@function px-to-rem($size) {
+  @return $size / 16px * 1rem;
+}
+
+$font-common: "Source Sans Pro", Arial, sans-serif;
+
+$color-light-blue: #e3eaf8;

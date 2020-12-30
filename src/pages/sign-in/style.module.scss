@@ -1,0 +1,17 @@
+@import "../../style/variables/variables";
+@import "../sign-up/style.module";
+
+.forgot-password-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: px-to-rem(44px);
+}
+
+.form-error {
+  color: $color-warning;
+  font-size: px-to-rem(14px);
+  line-height: px-to-rem(18px);
+  width: 100%;
+  text-align: center;
+  margin-bottom: px-to-rem(28px);
+}
