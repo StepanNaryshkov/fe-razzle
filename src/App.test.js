@@ -1,10 +1,10 @@
-import { App, mapStateToProps, mapDispatchToProps } from "./App";
 import React from "react";
-import { Router } from "react-router-dom";
-import history from "./routes/history";
 import { Provider } from "react-redux";
 import { fireEvent, render } from "@testing-library/react";
 import configureStore from "redux-mock-store";
+import { App, mapStateToProps, mapDispatchToProps } from "./App";
+import { Router } from "react-router-dom";
+import history from "./routes/history";
 import initialUserState from "./redux/stores/user";
 
 const mockStore = configureStore([]);
