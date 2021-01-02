@@ -17,6 +17,7 @@ describe('IsNotAuthUser', () => {
     component: NotFound,
     isLoggedIn: false,
     rest: {},
+    permissions: [],
   };
 
   const {container} = render(

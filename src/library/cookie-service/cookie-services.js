@@ -1,12 +1,12 @@
 import * as CryptoJS from 'crypto-js';
 import Cookies from 'js-cookie';
 
-export const setToken = (token, remember) => {
+export const setToken = (token) => {
   const encodedToken = CryptoJS.AES.encrypt(token, 'token').toString();
   const options = {
     path: '/',
   };
-  if (remember) options.expires = 0.5;
+  options.expires = 0.5;
 
   Cookies.set('token', encodedToken, options);
 };

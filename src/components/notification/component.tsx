@@ -1,13 +1,16 @@
 import React, {useEffect} from 'react';
+import {TNotification} from '../../redux/reducers/app';
 
-interface Props {
-  message: string;
-  onClose: () => {};
-  toggleNotification: () => {};
-  children: JSX.Element
+interface IProps {
+  isOpened: boolean;
+  onClose: () => void;
+  toggleNotification: (props: TNotification) => void;
+  children?: JSX.Element;
+  message?: string;
+  type?: string;
 }
 
-export const Notification = ({message, children, onClose, toggleNotification}: Props) => {
+export const Notification = ({message, children, onClose, toggleNotification}: IProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       toggleNotification({isOpened: false});

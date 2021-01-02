@@ -7,7 +7,18 @@ import AuthLayout from '../layouts/auth';
 
 const {ROLES} = CNST;
 
-const IsNotAuthUser = ({component: Component, isLoggedIn, ...rest}) => (
+export interface IIsNotAuthUser {
+  component: React.ComponentType<any>;
+  isLoggedIn: boolean;
+  exact?: boolean;
+  path?: string;
+}
+
+export interface IState {
+  isLoggedIn: boolean;
+}
+
+const IsNotAuthUser = ({component: Component, isLoggedIn, ...rest}: IIsNotAuthUser) => (
   <Route
     {...rest}
     render={(props) =>
@@ -20,7 +31,9 @@ const IsNotAuthUser = ({component: Component, isLoggedIn, ...rest}) => (
   />
 );
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = (state: {
+  user: IState
+}) => ({
   isLoggedIn: get(state, 'user.isLoggedIn', false),
 });
 

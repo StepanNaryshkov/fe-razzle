@@ -1,11 +1,12 @@
-import {mapStateToProps, mapDispatchToProps} from '.';
+import {mapStateToProps, mapDispatchToProps, IProps} from '.';
 
 describe('SignIn index', () => {
   test('should correct map state to props', () => {
-    const state = {
+    const state: {
+      user: IProps
+    } = {
       user: {
         fetching: true,
-        errors: false,
       },
     };
     expect(mapStateToProps(state)).toMatchObject(state.user);
@@ -13,7 +14,7 @@ describe('SignIn index', () => {
 
   test('dispatch should be called', () => {
     const dispatch = jest.fn();
-    mapDispatchToProps(dispatch).signIn();
+    mapDispatchToProps(dispatch).signIn({});
     expect(dispatch).toHaveBeenCalledTimes(1);
   });
 });

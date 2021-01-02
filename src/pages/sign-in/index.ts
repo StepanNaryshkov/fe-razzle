@@ -1,16 +1,20 @@
 import get from 'lodash/get';
 import {connect} from 'react-redux';
 import {SignIn} from './component';
-import {clearErrorsAction, signInAction} from '../../redux/actions/user';
+import {signInAction} from '../../redux/actions/user';
 
-export const mapStateToProps = (state) => ({
+export interface IProps {
+  fetching: boolean
+}
+
+export const mapStateToProps = (state: {
+  user: IProps
+}) => ({
   fetching: get(state, 'user.fetching', false),
-  errors: get(state, 'user.errors', {}),
 });
 
-export const mapDispatchToProps = (dispatch) => ({
-  signIn: (props) => dispatch(signInAction(props)),
-  clearErrors: (props) => dispatch(clearErrorsAction(props)),
+export const mapDispatchToProps = (dispatch: (arg: any) => void) => ({
+  signIn: (props: any) => dispatch(signInAction(props)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

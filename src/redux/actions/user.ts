@@ -1,21 +1,13 @@
 import CNST from '../../constants';
 
-export function signInAction(data) {
+export interface ISignInAction {
+  email: string;
+  password: string;
+}
+
+export function signInAction(data: ISignInAction) {
   return {
     type: CNST.USER.SIGN_IN.FETCH,
-    payload: data,
-  };
-}
-
-export function signOutAction() {
-  return {
-    type: CNST.USER.SIGN_OUT.FETCH,
-  };
-}
-
-export function clearErrorsAction(data) {
-  return {
-    type: CNST.USER.CLEAR_ERRORS.SUCCESS,
     payload: data,
   };
 }

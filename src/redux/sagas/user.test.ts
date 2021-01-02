@@ -4,6 +4,16 @@ import CNST from '../../constants';
 import {getUser, getUserRequest, signIn, signInRequest, signOut} from './user';
 import * as services from '../../library/cookie-service/cookie-services';
 
+jest.mock('axios');
+jest.mock('../../library/cookie-service/cookie-services');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+let mockedServices = services as jest.Mocked<typeof services>;
+mockedServices = {
+  setToken: jest.fn(),
+  getToken: jest.fn(),
+  removeToken: jest.fn(),
+};
+
 describe('User saga', () => {
   const response = {
     status: 200,
@@ -16,17 +26,17 @@ describe('User saga', () => {
   };
 
   beforeEach(() => {
-    axios.post = jest.fn();
-    axios.get = jest.fn();
+    mockedAxios.post = jest.fn();
+    mockedAxios.get = jest.fn();
   });
 
   afterEach(() => {
-    axios.post.mockRestore();
-    axios.get.mockRestore();
+    mockedAxios.post.mockRestore();
+    mockedAxios.get.mockRestore();
   });
 
   test('sigInRequest test success', async () => {
-    axios.post.mockImplementationOnce(() => Promise.resolve(singInData));
+    mockedAxios.post.mockImplementationOnce(() => Promise.resolve(singInData));
     const postUrl = '/user-service/login';
     await signInRequest(singInData);
     expect(axios.post).toHaveBeenCalledWith(postUrl, singInData);
@@ -39,13 +49,14 @@ describe('User saga', () => {
         data: 'Error',
       },
     };
-    axios.post.mockImplementation(() => Promise.reject(error));
+    mockedAxios.post.mockImplementation(() => Promise.reject(error));
     await expect(signInRequest(singInData)).rejects.toEqual(error.response.data);
   });
 
   test('signIn test success', () => {
     const newProps = {
       payload: singInData,
+      type: '',
     };
     testSaga(signIn, newProps)
         .next()
@@ -60,14 +71,13 @@ describe('User saga', () => {
   });
 
   test('signIn test success, with setToken called', () => {
-    // eslint-disable-next-line
-    services.setToken = jest.fn();
     const newProps = {
       payload: {
         email: 'test@gmail.com',
         password: 'password123',
         remember: true,
       },
+      type: '',
     };
     testSaga(signIn, newProps)
         .next()
@@ -80,12 +90,13 @@ describe('User saga', () => {
           payload: {email: newProps.payload.email, ...response.data},
         })
         .next();
-    expect(services.setToken).toBeCalled();
+    expect(mockedServices.setToken).toBeCalled();
   });
 
   test('signIn response not ok', () => {
     const newProps = {
       payload: singInData,
+      type: '',
     };
     const badResponse = {
       status: 300,
@@ -100,20 +111,6 @@ describe('User saga', () => {
         .put({type: CNST.USER.SIGN_IN.ERROR, payload: badResponse.data});
   });
 
-  test('signIn test error', () => {
-    const newProps = {
-      payload: singInData,
-    };
-    testSaga(signIn, newProps)
-        .next()
-        .call(signInRequest, {
-          ...newProps.payload,
-        })
-        .next(response)
-        .throw('error')
-        .put({type: CNST.USER.SIGN_IN.ERROR, payload: {errors: 'error'}});
-  });
-
   test('getUser test success', () => {
     testSaga(getUser)
         .next()
@@ -123,13 +120,13 @@ describe('User saga', () => {
   });
 
   test('getUser test error', () => {
-    testSaga(getUser).next().call(getUserRequest).next(response).throw('error').put({
+    testSaga(getUser).next().call(getUserRequest).next(response).throw(new Error()).put({
       type: CNST.USER.GET_PROFILE.ERROR,
     });
   });
 
   test('getUserRequest test success', async () => {
-    axios.get.mockImplementationOnce(() => Promise.resolve());
+    mockedAxios.get.mockImplementationOnce(() => Promise.resolve());
     const postUrl = '/user-service/me';
     await getUserRequest();
     expect(axios.get).toHaveBeenCalledWith(postUrl);
@@ -142,16 +139,14 @@ describe('User saga', () => {
         data: 'Error',
       },
     };
-    axios.get.mockImplementation(() => Promise.reject(error));
+    mockedAxios.get.mockImplementation(() => Promise.reject(error));
     await expect(getUserRequest()).rejects.toEqual(error.response.data);
   });
 
   test('signOut test success', () => {
-    // eslint-disable-next-line
-    services.removeToken = jest.fn();
     testSaga(signOut).next().put({
       type: CNST.USER.SIGN_OUT.SUCCESS,
     });
-    expect(services.removeToken).toBeCalled();
+    expect(mockedServices.removeToken).toBeCalled();
   });
 });

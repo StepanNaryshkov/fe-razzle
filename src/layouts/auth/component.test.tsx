@@ -4,11 +4,11 @@ import {Router} from 'react-router-dom';
 import React from 'react';
 import {store} from '../../store';
 import history from '../../routes/history';
-import {AuthLayout} from './component';
+import {AuthLayout, IAuthLayout} from './component';
 import CNST from '../../constants';
 import Profile from '../../pages/profile';
 
-const buildComponent = (props) =>
+const buildComponent = (props: IAuthLayout) =>
   render(
       <Provider store={store}>
         <Router history={history}>
@@ -20,7 +20,7 @@ const buildComponent = (props) =>
   );
 
 describe('Auth layout component', () => {
-  let props;
+  let props: IAuthLayout;
 
   beforeEach(() => {
     props = {
@@ -29,6 +29,7 @@ describe('Auth layout component', () => {
       isLoggedIn: true,
       role: CNST.ROLES.ADMIN,
       permissions: [CNST.ROLES.ADMIN],
+      children: <div/>,
     };
   });
 

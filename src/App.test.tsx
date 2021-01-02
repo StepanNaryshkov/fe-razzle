@@ -7,6 +7,7 @@ import {App, mapStateToProps, mapDispatchToProps} from './App';
 
 import history from './routes/history';
 import initialUserState from './redux/stores/user';
+import {IAppState} from './redux/reducers/app';
 
 const mockStore = configureStore([]);
 const store = mockStore(initialUserState);
@@ -42,21 +43,29 @@ describe('<App />', () => {
     const {container} = buildComponent(props);
     const closeBtn = container.querySelector('button[data-testid=\'close-notification\']');
 
-    fireEvent.click(closeBtn);
+    if (closeBtn) {
+      fireEvent.click(closeBtn);
+    }
     expect(toggleNotificationSpy).toHaveBeenCalledWith({isOpened: false});
   });
 
   test('should correct map state to props', () => {
-    const state = {
-      notification: {},
+    const state: {
+      app: IAppState
+    } = {
+      app: {
+        notification: {
+          isOpened: false,
+        },
+      },
     };
-    expect(mapStateToProps(state)).toMatchObject(state);
+    expect(mapStateToProps(state)).toMatchObject(state.app);
   });
 
   test('dispatch should be called', () => {
     const dispatch = jest.fn();
 
-    mapDispatchToProps(dispatch).toggleNotification();
+    mapDispatchToProps(dispatch).toggleNotification({});
     expect(dispatch).toHaveBeenCalledTimes(1);
   });
 });

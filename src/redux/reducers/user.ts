@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import CNST from '../../constants';
 import user from '../stores/user';
 
-export interface UserState {
+export interface IUserState {
   fetching: boolean;
   role: string;
   email: string;
@@ -18,7 +18,7 @@ export interface UserAction {
   };
 }
 
-export default function(state : UserState = user, action: UserAction) {
+export default function(state : IUserState = user, action: UserAction) {
   switch (action.type) {
     case CNST.USER.SIGN_OUT.FETCH:
     case CNST.USER.SIGN_IN.FETCH:

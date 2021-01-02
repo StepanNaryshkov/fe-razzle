@@ -1,8 +1,10 @@
-import {mapStateToProps, mapDispatchToProps} from './index';
+import {mapStateToProps, mapDispatchToProps, IProps} from './index';
 
 describe('Auth index', () => {
   test('should correct map state to props', () => {
-    const state = {
+    const state: {
+      user: IProps
+    } = {
       user: {
         isGetUserFetched: true,
         isLoggedIn: true,

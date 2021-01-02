@@ -4,6 +4,15 @@ import {PageSpinner} from '../../components';
 import NotFound from '../../pages/not-found';
 import CNST from '../../constants/app';
 
+export interface IAuthLayout {
+  getUser: () => void;
+  isGetUserFetched: boolean;
+  isLoggedIn: boolean;
+  role: string;
+  permissions: string[];
+  children?: JSX.Element;
+}
+
 const {ROUTE} = CNST;
 
 export const AuthLayout = ({
@@ -13,7 +22,7 @@ export const AuthLayout = ({
   role,
   permissions,
   children,
-}) => {
+}: IAuthLayout) => {
   const [doesUserHavePermission, setUserPermission] = useState(false);
   const [isNotAllowedToView, setIsNotAllowedToView] = useState(false);
 
@@ -36,7 +45,7 @@ export const AuthLayout = ({
 
   return (
     <>
-      {!isGetUserFetched && <PageSpinner />}
+      {!isGetUserFetched && <PageSpinner isFetching={true} />}
       {isAllowedToView && <>{children}</>}
       {needsToBeRedirected && <Redirect to={ROUTE.ROLE_BASE[role]} />}
       {isNotAllowedToView && <NotFound />}

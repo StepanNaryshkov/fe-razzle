@@ -4,18 +4,10 @@ import {BrowserRouter} from 'react-router-dom';
 import {NotFound} from './component';
 
 describe('NotFound component', () => {
-  let props;
-
-  beforeEach(() => {
-    props = {
-      t: jest.fn(),
-    };
-  });
-
   test('should render', () => {
     const {getByTestId} = render(
         <BrowserRouter>
-          <NotFound {...props} />
+          <NotFound />
         </BrowserRouter>,
     );
     expect(getByTestId('not-found')).toBeTruthy();

@@ -1,8 +1,8 @@
 import CNST from '../../constants';
-import userReducer, {UserState} from './user';
+import userReducer, {IUserState} from './user';
 
 describe('User reducer', () => {
-  let inititalState: UserState;
+  let inititalState: IUserState;
 
   beforeEach(() => {
     inititalState = {

@@ -1,10 +1,11 @@
 import {call, put} from 'redux-saga/effects';
 import axios from 'axios';
 import CNST from '../../constants';
+import {ISignInAction} from '../actions/user';
 import {isResponseOk} from '../../helpers/api/isResponseOk';
 import {removeToken, setToken} from '../../library/cookie-service/cookie-services';
 
-export const signInRequest = ({email, password}) =>
+export const signInRequest = ({email, password}: ISignInAction) =>
   axios
       .post('/user-service/login', {
         email,
@@ -14,7 +15,10 @@ export const signInRequest = ({email, password}) =>
         throw error.response.data;
       });
 
-export function* signIn(props) {
+export function* signIn(props: {
+  payload: ISignInAction,
+  type: string
+}) {
   try {
     const response = yield call(signInRequest, props.payload);
     if (isResponseOk(response)) {
@@ -22,7 +26,7 @@ export function* signIn(props) {
         type: CNST.USER.SIGN_IN.SUCCESS,
         payload: {email: props.payload.email, ...response.data},
       });
-      setToken(response.data.token, props.payload.remember);
+      setToken(response.data.token);
     } else {
       yield put({type: CNST.USER.SIGN_IN.ERROR, payload: response.data});
     }
