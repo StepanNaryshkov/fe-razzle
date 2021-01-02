@@ -5,14 +5,7 @@ import {getUser, getUserRequest, signIn, signInRequest, signOut} from './user';
 import * as services from '../../library/cookie-service/cookie-services';
 
 jest.mock('axios');
-jest.mock('../../library/cookie-service/cookie-services');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
-let mockedServices = services as jest.Mocked<typeof services>;
-mockedServices = {
-  setToken: jest.fn(),
-  getToken: jest.fn(),
-  removeToken: jest.fn(),
-};
 
 describe('User saga', () => {
   const response = {
@@ -33,6 +26,30 @@ describe('User saga', () => {
   afterEach(() => {
     mockedAxios.post.mockRestore();
     mockedAxios.get.mockRestore();
+  });
+
+  test('signIn test success, with setToken called', () => {
+    const spy = jest.spyOn(services, 'setToken');
+    const newProps = {
+      payload: {
+        email: 'test@gmail.com',
+        password: 'password123',
+        remember: true,
+      },
+      type: '',
+    };
+    testSaga(signIn, newProps)
+        .next()
+        .call(signInRequest, {
+          ...newProps.payload,
+        })
+        .next(response)
+        .put({
+          type: CNST.USER.SIGN_IN.SUCCESS,
+          payload: {email: newProps.payload.email, ...response.data},
+        })
+        .next();
+    expect(spy).toBeCalled();
   });
 
   test('sigInRequest test success', async () => {
@@ -68,29 +85,6 @@ describe('User saga', () => {
           type: CNST.USER.SIGN_IN.SUCCESS,
           payload: {email: newProps.payload.email, ...response.data},
         });
-  });
-
-  test('signIn test success, with setToken called', () => {
-    const newProps = {
-      payload: {
-        email: 'test@gmail.com',
-        password: 'password123',
-        remember: true,
-      },
-      type: '',
-    };
-    testSaga(signIn, newProps)
-        .next()
-        .call(signInRequest, {
-          ...newProps.payload,
-        })
-        .next(response)
-        .put({
-          type: CNST.USER.SIGN_IN.SUCCESS,
-          payload: {email: newProps.payload.email, ...response.data},
-        })
-        .next();
-    expect(mockedServices.setToken).toBeCalled();
   });
 
   test('signIn response not ok', () => {
@@ -144,9 +138,10 @@ describe('User saga', () => {
   });
 
   test('signOut test success', () => {
+    const spy = jest.spyOn(services, 'removeToken');
     testSaga(signOut).next().put({
       type: CNST.USER.SIGN_OUT.SUCCESS,
     });
-    expect(mockedServices.removeToken).toBeCalled();
+    expect(spy).toBeCalled();
   });
 });
