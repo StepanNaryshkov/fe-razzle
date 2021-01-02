@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {TNotification} from '../../redux/reducers/app';
 
-interface IProps {
+export interface INotification {
   isOpened: boolean;
   onClose: () => void;
   toggleNotification: (props: TNotification) => void;
@@ -10,7 +10,7 @@ interface IProps {
   type?: string;
 }
 
-export const Notification = ({message, children, onClose, toggleNotification}: IProps) => {
+export const Notification = ({message, children, onClose, toggleNotification}: INotification) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       toggleNotification({isOpened: false});
